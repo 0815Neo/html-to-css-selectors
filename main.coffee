@@ -101,8 +101,8 @@ DOMtoCSS =
 
         # Added classes
         if element.classes.length > 0
-            for _class, i in element.classes.length
-                text += "." + element.classes.slice(i-1,i).join()
+            for _class, i in element.classes
+                text += "." + element.classes.slice(i,i+1).join()
                 # Output for every class
                 console.log(tabs_text + text)
                 DOMtoCSS.outputLESSSelector(tabs_text + text)
@@ -117,7 +117,7 @@ DOMtoCSS =
 body_elements = new DOMtoCSS.elements_struct()
 
 # Run
-DOMtoCSS.getElements($('html'), body_elements)
-
+DOMtoCSS.getElements($('div'), body_elements)
+console.log(body_elements);
 DOMtoCSS.generateLESS(body_elements)
 $('body').html('<pre>' + DOMtoCSS.output + '</pre>')
