@@ -16,8 +16,11 @@ DOMtoCSS =
         DOMtoCSS.output += content + " {\n    \n}\n"
 
 
-    outputLESSSelector: (content) ->
-        DOMtoCSS.output += content + " {\n"
+    outputLESSSelector: (content, already_closed = false) ->
+        if !already_closed
+	        DOMtoCSS.output += content + " {\n"
+        else
+            DOMtoCSS.output += content + "{}\n"
 
 
     outputLESSTail: (tabs) ->
@@ -97,7 +100,7 @@ DOMtoCSS =
 
         # Outut with id and tagname
         console.log(tabs_text + text)
-        DOMtoCSS.outputLESSSelector(tabs_text + text)
+        DOMtoCSS.outputLESSSelector(tabs_text + text, (element.elements.length < 1 || element.classes.length > 0))
 
         # Added classes
         if element.classes.length > 0
@@ -105,19 +108,21 @@ DOMtoCSS =
                 text += "." + element.classes.slice(i,i+1).join()
                 # Output for every class
                 console.log(tabs_text + text)
-                DOMtoCSS.outputLESSSelector(tabs_text + text)
+                DOMtoCSS.outputLESSSelector(tabs_text + text, (i < element.classes.length && element.elements.length < 1))
 
-        $.each(element.elements, (index, value) ->
-            text += DOMtoCSS.generateLESS(value, tabs + 1)
-        )
 
-        DOMtoCSS.outputLESSTail(tabs)
+       	if element.elements.length > 0
+            $.each(element.elements, (index, value) ->
+                text += DOMtoCSS.generateLESS(value, tabs + 1)
+            )
+
+            DOMtoCSS.outputLESSTail(tabs)
 
 # Initalize data
 body_elements = new DOMtoCSS.elements_struct()
 
 # Run
-DOMtoCSS.getElements($('div'), body_elements)
+DOMtoCSS.getElements($('div.wrapper'), body_elements)
 console.log(body_elements);
 DOMtoCSS.generateLESS(body_elements)
 $('body').html('<pre>' + DOMtoCSS.output + '</pre>')
