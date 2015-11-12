@@ -20,7 +20,7 @@ DOMtoCSS =
         if !already_closed
 	        DOMtoCSS.output += content + " {\n"
         else
-            DOMtoCSS.output += content + "{}\n"
+            DOMtoCSS.output += content + " {}\n"
 
 
     outputLESSTail: (tabs) ->

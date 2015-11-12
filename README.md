@@ -2,7 +2,7 @@
 Tool to convert you html structure to css selectors with ids and class names.
 
 ## Demo
-You can find a demonstration on jsfiddle.net (http://jsfiddle.net/j0r7b6qg/1/). If
+You can find a demonstration on jsfiddle.net (http://jsfiddle.net/j0r7b6qg/3/). If
 you use an element with an id and a class you get invalid css code, so you have
 to choose which selector you wanna use.
 
@@ -33,36 +33,38 @@ If you have a list for example:
 
 You will gather duplicates in your css code as seen below:
 ```
-li {
-    ul {
-        li {
-            a{}
-        }
-        li {
-            a{}
-        }
-        li {
-            a{}
-        }
-    }
-}
-li {
-    ul {
-        li {
-            a{}
-        }
-        li {
-            a{}
+body {
+    li {
+        ul {
+            li {
+                a {}
+            }
+            li {
+                a {}
+            }
+            li {
+                a {}
+            }
         }
     }
-}
-li {
-    ul {
-        li {
-            a{}
+    li {
+        ul {
+            li {
+                a {}
+            }
+            li {
+                a {}
+            }
         }
-        li {
-            a{}
+    }
+    li {
+        ul {
+            li {
+                a {}
+            }
+            li {
+                a {}
+            }
         }
     }
 }
