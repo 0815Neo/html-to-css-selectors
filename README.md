@@ -1,9 +1,9 @@
-# html-to-css-selectors
-Tool to convert you html structure to css selectors with ids and class names.
+# html-to-less-selectors
+Tool to convert you html structure to less selectors with ids and class names.
 
 ## Demo
 You can find a demonstration on jsfiddle.net (http://jsfiddle.net/j0r7b6qg/4/). If
-you use an element with an id and a class you get invalid css code, so you have
+you use an element with an id and a class you get invalid less code, so you have
 to choose which selector you wanna use.
 
 ## Todo
@@ -31,7 +31,7 @@ If you have a list for example:
 </li>
 ```
 
-You will gather duplicates in your css code as seen below:
+You will gather duplicates in your less code as seen below:
 ```
 body {
     li {
